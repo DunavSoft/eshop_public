@@ -1,0 +1,13 @@
+Libraries
+
+## [1.0.3] - 2024-10-24
+### Added
+- keep the original file in a folder original_images for products_images only
+
+## [1.0.2] - 2024-08-04
+### Added
+- Added webp conversion for images
+
+## [1.0.1] - 2024-07-04
+### Added
+- Added Resize function for images so as to lower their size

@@ -1,0 +1,19 @@
+Modules/Settings
+
+## [1.0.4] - 2022-08-15
+### Changed
+- Migrate process improved
+- Routes file changed
+
+###[1.0.3] - 2022-07-14
+### Improved 
+- added global variable {locale} for use anywhere
+
+### [1.0.2] - 2022-06-24
+### Changed 
+- ckeditor replaces summernote
+
+### [1.0.1] - 2022-05-05
+### Changed 
+- summernote - not saving content while in code view 
+- admin_panel/plugins/summernote - updated version summernote-0.8.18 from (https://summernote.org/getting-started/)

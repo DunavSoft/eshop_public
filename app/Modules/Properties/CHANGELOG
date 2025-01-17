@@ -1,0 +1,123 @@
+Modules/Properties
+
+## [1.0.3] - 2024-04-17
+### Bugfix for Properties and Properties Categories
+- title of browser tab problem fixed in admin panel
+- submitting empty fields problem fixed in admin panel
+### Edited for Properties and Properties Categories
+- unset search for deleted elements in admin panel 
+
+## [1.0.2] - 2024-04-01
+### Bugfix 
+- Fixed the slug error when it uses a dash(replaced with underscore).
+
+## [1.0.1] - 2024-02-28
+### Bugfix 
+- Unable to click on the additional fields in ckfinder (links, tables etc.) when is in Modal
+
+## [1.0.0] - 2023-04-26
+### Added 
+- Created Module Properties
+
+
+*** Categories Properties ***
+
+**LIST
+* List Pagination - Yes
+* AJAX List - Yes - on search and after submit form
+
+**SEARCH
+* Search - Yes
+* Search Pagination - Yes
+* AJAX Search - Yes
+
+**FORM
+* AJAX Form - Yes
+* Modal - Yes
+* Form copy - Yes
+* Image upload - Yes
+* Image resize - Yes
+* Multiple images - Yes
+* AJAX Controller Validation fields - Yes
+
+**DELETE
+* Delete - Yes
+* AJAX Delete - Yes
+
+**RESTORE
+* Restore - Yes
+* AJAX Restore - Yes
+
+**API
+* Use API - No
+
+
+*** Properties ***
+
+**LIST
+* List Pagination - Yes
+* AJAX List - Yes - on search and after submit form
+
+**SEARCH
+* Search - Yes
+* Search Pagination - Yes
+* AJAX Search - Yes
+
+**FORM
+* AJAX Form - Yes
+* Modal - Yes
+* Form copy - Yes
+* Image upload - Yes
+* Image resize - Yes
+* Multiple images - Yes
+* AJAX Controller Validation fields - Yes
+
+**DELETE
+* Delete - Yes
+* AJAX Delete - Yes
+
+**RESTORE
+* Restore - Yes
+* AJAX Restore - Yes
+
+**API
+* Use API - No
+
+*** USAGE ***
+1) Copy module directory in app/Modules/
+2) Run /admin/properties/migrate to install database
+
+3) File app/Config/App.php add following:
+
+public $loadedModules = [
+	...
+	'Properties', //Optional
+];
+
+4) File app/Views/template/admin.php add following:
+
+<?php if (in_array($activeMenu, [... 'properties_categories', 'properties', ])) $open = true; else $open = false; ?>
+
+			  <?php if (in_array('Properties', $configApp->loadedModules)) : ?>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+					<a href="<?= site_url($locale . '/admin/properties_categories') ?>" class="nav-link <?= in_array($activeMenu, ['properties_categories']) ? 'active' : '' ?>">
+					  <i class="far fa-circle nav-icon"></i>
+					  <p><?= lang('PropertiesCategoriesLang.moduleTitle') ?></p>
+					</a>
+				  </li>
+				  
+				  <li class="nav-item">
+					<a href="<?= site_url($locale . '/admin/properties') ?>" class="nav-link <?= in_array($activeMenu, ['properties']) ? 'active' : '' ?>">
+					  <i class="far fa-circle nav-icon"></i>
+					  <p><?= lang('PropertiesLang.moduleTitle') ?></p>
+					</a>
+				  </li>
+                </ul>
+              <?php endif; ?>
+
+5) Requires Module Common/ImageMultiupload v. [1.0.0]
+6) Requires \app\Libraries\ImagesConvert.php
+
+*** CUSTOMIZATION ***
+!!! Attention: DO NOT EDIT ANY File, excerpt files in \Modules\Properties\Views - only for frontend

@@ -1,0 +1,59 @@
+Modules/ShopSettings
+
+### [1.1.1] - 2024-10-23
+### Added - link for google ads feed
+
+### [1.1.0] - 2023-08-23
+### Changed - .........
+
+### [1.0.0] - 2023-04-30
+### Added Module ShopSettings 
+
+
+*** USAGE ***
+1) Copy module directory in app/Modules/
+2) Run /admin/shopsettings/migrate to install database
+
+3a) File app/Config/Filters.php add following:
+
+public $aliases = [
+	...
+	'shopsettings' => \App\Modules\ShopSettings\Filters\ShopSettingsFilter::class,
+];
+
+public $globals = [
+	'after' => [
+		...
+		'shopsettings',
+	],
+];
+
+3) File app/Config/App.php add following:
+
+public $loadedModules = [
+	...
+	'ShopSettings', //Optional
+];
+
+4) File app/Views/template/admin.php add following:
+
+<?php if (in_array($activeMenu, [... '', 'shopsettings', ])) $open = true; else $open = false; ?>
+
+			  <?php if (in_array('ShopSettings', $configApp->loadedModules)) : ?>
+                <ul class="nav nav-treeview">
+                  
+				  <li class="nav-item">
+					<a href="<?= site_url($locale . '/admin/shopsettings') ?>" class="nav-link <?= in_array($activeMenu, ['shopsettings']) ? 'active' : '' ?>">
+					  <i class="far fa-circle nav-icon"></i>
+					  <p><?= lang('PropertiesLang.moduleTitle') ?></p>
+					</a>
+				  </li>
+				  
+                </ul>
+              <?php endif; ?>
+
+5) Requires Module Common/ImageMultiupload v. [1.0.0]
+6) Requires \app\Libraries\ImagesConvert.php
+
+*** CUSTOMIZATION ***
+!!! Attention: DO NOT EDIT ANY File

@@ -1,0 +1,135 @@
+/*Cookies PLAMEN*/
+.cookie-consent {
+    position: fixed;
+    right: 0;
+    z-index: 999999999;
+    bottom: 0;
+    width: 100%;
+    background-color: #5b5a5a !important;
+    padding: 20px;
+    color: #fff !important;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.btn:focus, .form-check-input:focus {
+    box-shadow: none !important;
+}
+
+.cookie-consent p {
+    color: #fff !important;
+}
+
+.cookie-consent a {
+    color: #b60404;
+}
+
+.cookie-consent a:hover {
+    opacity: 0.7;
+}
+
+
+.cookie-consent small {
+    display: block;
+    font-size: 11px;
+    margin-bottom: 10px;
+}
+
+#cookie-btn {
+    border: 1px solid #ffffff;
+    border-radius: 0;
+    background: #a1a1a1;
+    color: white;
+    padding: 7px;
+    cursor: pointer;
+    display: inline-block;
+    width: 230px;
+    transition: all 0.3s ease-in;
+    font-size: 15px;
+}
+
+#checkAllButton {
+    border: 1px solid #ffffff;
+    border-radius: 0;
+    background: #b60404;
+    color: white;
+    padding: 7px;
+    cursor: pointer;
+    display: inline-block;
+    width: 230px;
+    transition: all 0.3s ease-in;
+    font-size: 15px;
+    margin-right: 20px;
+}
+
+#uncheckAllButton {
+    border: 1px solid #ffffff;
+    border-radius: 0;
+    background: #a1a1a1;
+    color: white;
+    padding: 7px;
+    cursor: pointer;
+    display: inline-block;
+    width: 230px;
+    transition: all 0.3s ease-in;
+    font-size: 15px;
+    margin-right: 20px;
+}
+
+#uncheckAllButton:hover , #checkAllButton:hover, #cookie-btn:hover {
+    opacity: 0.8;
+}
+
+button#cookie-config {
+    color: #fff;
+    border: 1px solid;
+    border-radius: 0;
+    display: block;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-size: 10px;
+}
+
+form#cookieForm {
+    padding: 10px 0 15px;
+    border-bottom: 1px solid #575757;
+    margin-bottom: 15px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/*.form-check-input:checked {*/
+/*    background-color: #b60404 !important;*/
+/*    border-color: #b60404  !important;*/
+/*}*/
+
+@media (max-width: 460px) {
+    #uncheckAllButton , #checkAllButton, #cookie-btn {
+        font-size: 9px;
+        width: 140px;
+        padding: 5px 3px;
+    }
+
+    #checkAllButton {
+        margin-right: 5px;
+    }
+
+    .cookie-consent {
+        padding: 20px 10px;
+    }
+
+    button#cookie-config {
+        font-size: 9px;
+    }
+
+    .cookie-consent p {
+       font-size: 13px;
+    }
+}
+/*Cookies PLAMEN*/

@@ -1,0 +1,15 @@
+Modules/Common
+
+## [1.0.2] - 2023-04-27
+### Bugfix
+- Remove last image for non-cropit setting
+- Added usage.txt
+
+## [1.0.1] - 2023-04-11
+### Bugfix
+- Prevent duplicate images on google Chrome after upload then cancel. Only for non crop mode.
+- Prevent duplicate images after several Edit action. Only for non crop mode.
+
+## [1.0.0] - 2023-03-07
+### Added
+- create Common module

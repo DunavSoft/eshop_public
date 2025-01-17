@@ -1,0 +1,23 @@
+Modules/Admin
+
+## [1.0.5] - 2024-06-04
+### Changed
+- Made a new Dashboard
+
+## [1.0.4] - 2024-02-16
+### Bugfix
+- add $locale in ordering files and routes
+
+## [1.0.3] - 2023-10-30
+### Changed - optimizing Routings for module
+- Changed files:
+/Config/Routes.php
+
+## [1.0.2] - 2022-09-11
+### Changed
+- Redirects based on Access and Language
+- Logout - to redirect to $locale/login
+
+## [1.0.1] - 2022-08-15
+### Changed
+- Migrate process improved

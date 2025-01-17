@@ -1,0 +1,190 @@
+.d-grid {
+  display: grid !important;
+}
+
+.custom__fields__wrapper {
+  margin-top: 20px;
+}
+
+.custom__fields__wrapper .panel {
+  border-bottom: 1px solid #ffffff;
+}
+
+.custom__fields__wrapper .panel-heading {
+  background-color: #2262a8;
+  color: white;
+  padding: 8px;
+  opacity: 0.9;
+  transition: all .3s
+}
+
+.custom__fields__wrapper .panel-heading:hover {
+  opacity: 0.7;
+}
+
+.custom__fields__wrapper .panel-body {
+  padding: 15px;
+}
+
+.custom__fields__wrapper .panel-heading a {
+  color: white;
+}
+
+.custom__fields__wrapper .panel-heading .panel-title {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.custom__fields__wrapper .panel-heading .panel-title .indicator {
+  transition: all .3s;
+  margin-top: 5px;
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+.custom__fields__wrapper .panel-heading .panel-title .indicator.opened {
+  transform: rotate(180deg);
+  transition: all .5s;
+}
+
+.custom__fields__select-field__type {
+  padding: 30px;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid #f9f9f9;
+}
+
+.custom__fields__select-field__type-image {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  background-size: contain !important;
+  transition: all .2s;
+}
+
+.custom__fields__select-field__type-image:hover {
+  transform: scale(1.2);
+}
+
+.custom__field__options {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.custom__field__options input {
+  margin: 0 10px;
+}
+
+.custom__fields__validation__rules-add {
+  margin-right: 25px;
+}
+
+.shaking {
+  animation: horizontal-shaking 0.2s;
+}
+
+@keyframes horizontal-shaking {
+  0% { transform: translateX(0) }
+  25% { transform: translateX(5px) }
+  50% { transform: translateX(-5px) }
+  75% { transform: translateX(5px) }
+  100% { transform: translateX(0) }
+ }
+
+.form-control.error {
+  border-color: #E73379;
+}
+
+.error {
+  color: #E73379;
+  font-size: 15px;
+  width: 100%;
+}
+
+
+input.select2-search__field {
+  /*background: url("../img/chevron_chevron%20down_icon.png") no-repeat !important;*/
+  background-size: 25px 25px !important;
+  min-width: 25px;
+  cursor: pointer;
+}
+
+.lds-dual-ring {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+}
+
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  border-color: #fff transparent #fff transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.full_modal_dialog {
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  
+  
+}
+
+.full_modal_content {
+  height: 100% !important;
+  min-height: 100% !important;
+  max-height: 100% !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  border: none !important;
+}
+
+.page-link-active {
+	color: #fff;
+	background-color: #2262a8;
+	border: 1px solid #2262a8;
+}
+
+
+.table td, .table th {
+  padding: .45rem;
+  border-top: 1px solid #bbbbbb;
+}
+
+.table thead th {
+	border-bottom: 2px solid #bbbbbb;
+}
+
+.table tbody tr:hover > .zoomable{
+	font-size:1.25rem;
+}
+
+.handle:hover {
+	cursor: move;
+}
+
+.select2-container--default .select2-results__option[aria-disabled="true"] {
+  color: #999999;
+}

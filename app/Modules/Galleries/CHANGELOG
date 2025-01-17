@@ -1,0 +1,49 @@
+Modules/Galleries
+
+## [2.0.0] - 2024-12-11
+### Added
+- Added reinstall function in Migrate.php file and the admin route for it.
+### Changed
+- Changed the admin routes in Routes.php file by the new standard.
+- Removed the front routes in Routes.php file.
+- Removed regress function from Migrate.php file.
+- Changed the front routes with new slugs.
+
+## [1.1.3] - 2024-04-15
+### Bugfix
+- show first image on homerpage and galleries index page
+
+## [1.1.2] - 2024-04-01
+### Added
+- add Home_Block view and Galleries view and added an option to be shown on the homepage and the full list.
+
+
+## [1.1.1] - 2024-02-16
+### Bugfix
+- add $locale in ordering files and routes
+
+## [1.1.0] - 2024-01-31
+### Added
+- New pages on front for all and each gallery.
+- Created breadcrumb for each gallery.
+- Added seo title and meta description.
+- Added images with carousel and titles for all and each gallery.
+
+## [1.0.5] - 2023-05-30
+### Changed
+- Multiple images upload if setting is crop = false.
+### Added
+- Delete all images button.
+
+## [1.0.4] - 2022-08-15
+### Changed
+- Migrate process improved
+- Routes file changed
+
+## [1.0.3] - 2022-06-29
+### Changed
+- Migrate
+
+## [1.0.2] - 2022-06-24
+### Changed
+- ckeditor replaces summernote

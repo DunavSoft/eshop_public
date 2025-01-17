@@ -1,0 +1,49 @@
+Modules/Pages
+
+## [2.0.0] - 2024-12-12
+### Added
+- Added reinstall function in Migrate.php file and the admin route for it.
+- The module is recreated using AJAX.
+### Changed
+- Changed the admin routes in Routes.php file by the new standard.
+- Removed the front routes in Routes.php file.
+- Removed regress function from Migrate.php file.
+- Changed the front routes with new slugs.
+
+## [1.0.8] - 2024-04-17
+### Bugfix 
+- Titles cant be empty. Add transaction
+
+## [1.0.7] - 2023-04-20
+### Added
+- Add og tags
+- Add Image
+
+## [1.0.6] - 2022-08-15
+### Changed
+- Migrate process improved
+
+## [1.0.5] - 2022-07-07
+### Changed 
+- Bugfix - save page
+- Add Database Migration files
+- Add regress in Controllers/Migrate.php
+- Changes Config/Routes.php
+
+## [1.0.4] - 2022-06-30
+### Changed 
+- Improved module structure
+
+## [1.0.3] - 2022-06-28
+### Changed
+- При създаване страница и остане някое задължително поле незапълнено, след натискане на бутона да не грешка и цялото съдържание да се изтрива
+
+## [1.0.2] - 2022-06-24
+### Changed
+- changes for mobile version in /Views/admin_pages_index.php ; /Views/admin_pages_form.php;
+- ckeditor replaces summernote
+
+## [1.0.1] - 2022-05-05
+### Changed
+- summernote - not saving content while in code view
+- admin_panel/plugins/summernote - updated version summernote-0.8.18 from (https://summernote.org/getting-started/)

@@ -1,0 +1,75 @@
+Modules/Colors
+
+## [1.0.2] - 2024-04-17
+### Bugfix
+- title of browser tab problem fixed in admin panel
+- submitting empty fields problem fixed in admin panel
+### Edited
+- unset search for deleted elements in admin panel 
+
+## [1.0.1] - 2024-01-15
+### Added 
+- Regress capability
+
+## [1.0.0] - 2023-03-29
+### Added 
+- Created module
+
+***Module Colors
+
+**LIST
+* List Pagination - Yes
+* AJAX List - Yes
+
+**SEARCH
+* Search - Yes
+* Search Pagination - Yes
+* AJAX Search - Yes
+
+**FORM
+* AJAX Form - Yes
+* Modal - Yes
+* Form copy - Yes
+* Image upload - Yes
+* Image resize - Yes
+* Multiple images - No
+
+**DELETE
+* Delete - Yes
+* AJAX Delete - Yes
+
+**RESTORE
+* Restore - Yes
+* AJAX Restore - Yes
+
+**API
+* Use API - No
+
+***MODULE DEPENDANCY
+* ImageSingleUpload
+
+*** USAGE ***
+1) Copy module directory in app/Modules/
+2) Run /admin/colors/migrate to install database
+
+3) File app/Config/App.php add following:
+
+public $loadedModules = [
+	...
+	'Colors', //Optional
+];
+
+4) File app/Views/template/admin.php add following near SHOP Settings:
+
+<?php if (in_array($activeMenu, ['...', '...', 'colors'])) $open = true; else $open = false; ?>
+
+  <?php if (in_array('Colors', $configApp->loadedModules)) : ?>
+	<ul class="nav nav-treeview">
+	  <li class="nav-item">
+		<a href="<?= site_url($locale . '/admin/colors') ?>" class="nav-link <?= in_array($activeMenu, ['colors']) ? 'active' : '' ?>">
+		  <i class="far fa-circle nav-icon"></i>
+		  <p><?= lang('ColorsLang.moduleTitle') ?></p>
+		</a>
+	  </li>
+	</ul>
+  <?php endif; ?>

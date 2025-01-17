@@ -1,0 +1,34 @@
+Modules/Land
+
+## [2.0.0] - 2024-12-13
+### Changed
+- Changed the front routes with new slugs.
+
+## [1.1.1] - 2024-01-27
+### Added 
+- Ability to use multiple subscribe forms in one page (homepage)
+
+## [1.1.0] - 2023-12-18
+### Added 
+- Added improvements for DSeShop in ErrorsController
+
+## [1.0.4] - 2023-10-30
+### Bugfix - shows olways default locale if /en or /de
+- Changed files: 
+/Config/Routes.php
+/Controllers/BaseController.php
+CHANGELOG
+- Added files:
+/Filters/LocaleFilter.php
+
+## [1.0.3] - 2022-08-23
+### Bugfix - added en locale if url is /en/abrakadabra
+- show404() in (ErrorsController.php)
+
+## [1.0.2] - 2022-07-01
+### Changed 
+- show404() in (ErrorsController.php)
+
+## [1.0.1] - 2022-05-05
+### Changed 
+- show404() in (ErrorsController.php)

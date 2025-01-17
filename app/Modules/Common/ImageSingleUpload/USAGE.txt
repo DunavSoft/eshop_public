@@ -1,0 +1,255 @@
+App/Modules/Common/ImageSingleUpload
+
+STRUCTURE
+
+/App/Modules/Common/Language
+	/bg
+	/en
+
+//if use different table for images (see Module Properties)
+
+/App/Modules/Common/ImageMultiUpload/Views
+	- images_multiupload_form - contains the form for upload images
+	- images_multiupload_js - contains the js for upload images
+	
+/App/Modules/Common/ImageSingleUpload/Views	
+	- image_upload_js - js to delete current image
+	- 
+	
+USAGE
+
+*** /Controller/form()
+
+$data['imagesArray'] = $this->brandsImagesModel->getImagesByBrandId($id);
+
+$data['brandsLanguages'] = [];
+if ($id !== 'new') {
+	$brandsLanguages = $this->brandsLanguagesModel->getBrandsLanguagesByBrandId($id);
+	foreach ($brandsLanguages as $langElement) {
+		$data['brandsLanguages'][$langElement->lang_id] = $langElement;
+	}
+}
+//to use in ImagesMultiUpl module
+$data['moduleLanguages'] = &$data['brandsLanguages'];
+
+$data['form_js'] = [
+	'App\Modules\Common\ImageMultiUpload\Views\images_multiupload_js',
+	'App\Modules\Common\ImageSingleUpload\Views\image_upload_js', //for deleting last image
+];
+
+
+*** /Controller/form_submit()
+
+	/**
+	 * Processes the form data
+	 *
+	 * @param  mixed $id - brand id
+	 * 
+	 * @return json
+	 */
+	public function form_submit($id = 'new')
+	{
+		if ($this->request->getMethod() === 'post') {
+			
+			$formId = $id;
+			
+			// *** images *** //
+			$imagesRemoveArray = [];
+			if ($id !== 'new') {
+				
+				$data['imagesArray'] = $this->brandsImagesModel->getImagesByBrandId($id);
+				
+				foreach ($data['imagesArray'] as $element)  {
+					$imagesRemoveArray[$element->id] = $element->id;
+				}
+			}
+			// *** images end *** //
+
+			$save = $this->request->getPost('save');
+			$saveLanguages = $this->request->getPost('brands_languages');
+
+			if ($id !== 'new') {
+				$save['id'] = $id;
+			} else {
+				$save['id'] = false;
+			}
+
+			$lastInsertId = $this->brandsModel->saveElement($save);
+			
+			if ($lastInsertId != false) {
+				$data['id'] = $lastInsertId;
+			} else {
+				$data['id'] = $id;
+			}
+
+			if ($lastInsertId != false) {
+				
+				// *** images *** // images_table_name = brands_images
+				$imagesPostArray = $this->request->getPost($this->viewData['images_table_name']);
+				
+				$this->_saveImages($formId, $lastInsertId, $imagesPostArray, $imagesRemoveArray);
+				// *** images end *** //
+				
+				$data['id'] = $lastInsertId;
+
+				$flagNoErrorLanguages = true;
+
+				foreach ($saveLanguages as $key => $saveLang) {
+					
+					$saveLang['lang_id'] = $key;
+					$saveLang['brand_id'] = $lastInsertId;
+
+					if ($saveLang['id'] == '') {
+						$saveLang['id'] = false;
+					}
+					
+					//images description for galleries_languages table
+					$imagesDescPost = $this->request->getPost('images_desc['. $key .']');
+					unset($imagesDescPost[0]);
+					
+					$imagesDesc = [];
+					foreach ($imagesDescPost as $key => $value) {
+						$imagesDesc[] = $value;
+					}
+					
+					$saveLang['images_description'] = json_encode($imagesDesc);
+					// end images description
+
+					$lastInsertLanguagesId = $this->brandsLanguagesModel->saveBrandsLanguages($saveLang);
+
+					if ($lastInsertLanguagesId == false) {
+						$data['error_message'] = $this->brandsLanguagesModel->errors();
+						
+						$flagNoErrorLanguages = false;
+						
+						return json_encode(['status' => 'error', 'data' => $data]);
+					}
+				}
+
+				if ($flagNoErrorLanguages) {
+					$data['message'] = lang('BrandsLang.saved', [$this->_getDefaultTitle($lastInsertId)]);
+				}
+				
+			} else {
+				$data['error_message'] = $this->brandsModel->errors();
+
+				return json_encode(['status' => 'error', 'data' => $data]);
+			}
+			
+			return json_encode(['status' => 'success', 'data' => $data]);
+		}
+		
+		return json_encode(['status' => 'error', 'data' => []]);
+	}
+
+
+	private function _saveImages($id, $lastInsertId, $imagesPostArray, $imagesRemoveArray) 
+	{
+		//var_dump($id); var_dump($imagesPostArray); var_dump($imagesRemoveArray);exit;
+		//$imagesPostArray = $this->request->getPost('galleries_images');
+		 
+		$sequence = 1;
+		if ($imagesPostArray) {
+			foreach ($imagesPostArray as $postElement) {
+			
+				$saveImg = [];
+				$saveImg['id'] = false;
+				$saveImg['brand_id'] = $id;
+				
+				foreach ($postElement as $key => $value) {
+					$saveImg[$key] = $value;
+				}
+				
+				if ($id == 'new') {
+					//COPY content of the image 
+					if ($saveImg['id'] != false) {
+						$originalImage = $this->brandsImagesModel->find($saveImg['id']);
+						$saveImg['image'] = $originalImage->image;
+						$saveImg['brand_id'] = $lastInsertId;
+					}
+					
+					unset($imagesRemoveArray[$saveImg['id']]);
+					$saveImg['id'] = false;
+				}
+				
+				
+				$saveImg['sequence'] = $sequence;
+				
+				$this->brandsImagesModel->save($saveImg);
+				
+				$sequence++;
+				
+				if ($saveImg['id'] != false) {
+					unset($imagesRemoveArray[$saveImg['id']]);
+				}
+			}
+		}
+	
+		//remove deleted images
+		foreach ($imagesRemoveArray as $key => $value) {
+			$this->brandsImagesModel->where('id', $key)->delete();
+		}
+		
+		//save images as files
+		$ImagesConvert = new ImagesConvert();
+		$ImagesConvert->convertImage(['brands_images'], ['brands_images' => 'image']);
+	}
+	
+
+
+*** /Views/form
+
+<li class="nav-item">
+	<a class="nav-link" id="custom-content-below-image-tab" data-toggle="pill" href="#custom-content-below-image" role="tab" aria-controls="custom-content-below-image" aria-selected="false"><?php echo lang('AdminPanel.images');?></a>
+</li>
+  
+<!-- images multiupload tab -->
+<div class="tab-pane fade" id="custom-content-below-image" role="tabpanel" aria-labelledby="custom-content-below-image-tab">		
+<?php
+
+	$passArray['nrImages'] = 0;
+	$passArray['image'] = [];
+
+	echo view('\App\Modules\Common\ImageMultiUpload\Views\images_multiupload_form', $passArray);
+
+?>
+</span>
+
+<a class="btn btn-danger btn-sm" href="javascript:" id="remove-all-images-button">
+  <?= lang('CommonLang.image_delete_all') ?> <i class="fas fa-trash" title="<?= lang('CommonLang.image_delete_all') ?>"></i>
+</a>
+
+<p class="pt-0 pb-0 mb-0 mt-0"><small id="ordering_help"><?= lang('CommonLang.ordering_help') ?></small></p>
+
+<span class="form-horizontal" id="images_sortable">
+<span id="image_card_sortable"></span>
+
+<?php foreach ($imagesArray as $image) {
+	$passArray['nrImages']++;
+	$passArray['image'] = $image;
+	echo view('\App\Modules\Common\ImageMultiUpload\Views\images_multiupload_form', $passArray);
+} ?>
+</span>			
+</div>
+<!-- end images multiupload tab -->
+
+*******************
+<?php
+if (isset($form_js)) {
+	try
+	{
+		if (is_array($form_js)) {
+			foreach ($form_js as $js) {
+				echo view($js);
+			}
+		} else {
+			echo view($form_js);
+		}
+	}
+	catch (Exception $e)
+	{
+		echo "<pre><code>$e</code></pre>";
+	}
+}
+?>
+

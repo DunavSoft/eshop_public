@@ -1,0 +1,26 @@
+Modules/Languages
+
+System: DSeCMS DSeSHOP
+
+## [1.0.5] - 2024-04-04
+### Bugfix
+- possibility to save the changes in form
+### Added
+- Reinstall for the module
+
+## [1.0.4] - 2024-02-16
+### Bugfix
+- add $locale in ordering files and routes
+
+## [1.0.3] - 2023-03-04
+### Changed
+- Add Migrate table languages_front as required for the system
+- Add Seeds for table languages_front as required for the system
+
+## [1.0.2] - 2022-09-10
+### Changed
+- Languages setup from files
+
+## [1.0.1] - 2022-08-15
+### Changed
+- Migrate process improved

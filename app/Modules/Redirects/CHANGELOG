@@ -1,0 +1,105 @@
+Modules/Redirects
+
+## [1.0.6] - 2024-04-17
+### Bugfix
+- title of browser tab problem fixed in admin panel
+### Edited
+- unset search for deleted elements in admin panel 
+
+## [1.0.5] - 2024-04-08
+### Bugfix
+- BUGFIX cyrillic charackters problem
+- BUGFIX cyrillic charackters problem in file /App/Config/Routes.php
+
+## [1.0.4] - 2024-04-04
+### Bugfix
+- BUGFIX cyrillic charackters problem in file /App/Config/Routes.php
+
+## [1.0.3] - 2024-03-27
+### Added
+- Added the redirects in the Config/Routes.php dynamically
+### Bugfix
+- Ability to redirect if there is non-existing routes in the application
+
+## [1.0.2] - 2024-02-12
+### Added
+- Add redirect if there is no locale in the URI
+- Add redirect if there is /public in the URI
+
+## [1.0.1] - 2023-10-23
+### Changed
+- Remove Deprecated: Required parameter $searchArray follows optional parameter $activeOnly in /home/zashevsu/radilon.zashevsupport.com/app/Modules/Redirects/Models/RedirectsModel.php on line 93
+
+## [1.0.0] - 2023-03-19
+### Added 
+- Created module
+
+*** Module Redirects ***
+
+**LIST
+* List Pagination - Yes
+* AJAX List - Yes
+
+**SEARCH
+* Search - Yes
+* Search Pagination - Yes
+* AJAX Search - Yes
+
+**FORM
+* AJAX Form - Yes
+* Modal - Yes
+* Form copy - Yes
+* Image upload - NA
+* Image resize - NA
+* Multiple images - NA
+
+**DELETE
+* Delete - Yes
+* AJAX Delete - Yes
+
+**RESTORE
+* Restore - Yes
+* AJAX Restore - Yes
+
+**API
+* Use API - NA
+
+*** USAGE ***
+1) Copy module directory in app/Modules/
+2) Run /admin/redirects/migrate to install database
+
+3) File app/Config/Filters.php add following:
+
+public $aliases = [
+	...
+	'redirects' => \App\Modules\Redirects\Filters\RedirectsFilter::class,
+];
+
+public $globals = [
+	'before' => [
+		...
+		'redirects',
+	],
+];
+
+4) File app/Config/App.php add following:
+
+public $loadedModules = [
+	...
+	'Redirects', //Optional
+];
+
+5) File app/Views/template/admin.php add following:
+
+<?php if (in_array($activeMenu, ['settings', 'administrators', 'languages', 'menus', 'redirects'])) $open = true; else $open = false; ?>
+
+  <?php if (in_array('Redirects', $configApp->loadedModules)) : ?>
+	<ul class="nav nav-treeview">
+	  <li class="nav-item">
+		<a href="<?= site_url($locale . '/admin/redirects') ?>" class="nav-link <?= in_array($activeMenu, ['redirects']) ? 'active' : '' ?>">
+		  <i class="far fa-circle nav-icon"></i>
+		  <p><?= lang('RedirectsLang.moduleTitle') ?></p>
+		</a>
+	  </li>
+	</ul>
+  <?php endif; ?>

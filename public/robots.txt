@@ -1,0 +1,15 @@
+User-agent: *
+Allow: / 
+Disallow: /admin/ 
+Disallow: /users/ 
+
+Sitemap: http://eshop.localhost/bg/sitemap/1
+Sitemap: http://eshop.localhost/bg/sitemap/2
+Sitemap: http://eshop.localhost/bg/sitemap/3
+Sitemap: http://eshop.localhost/bg/sitemap/4
+Sitemap: http://eshop.localhost/bg/sitemap/5
+Sitemap: http://eshop.localhost/bg/sitemap/6
+Sitemap: http://eshop.localhost/bg/sitemap/7
+Sitemap: http://eshop.localhost/bg/sitemap/8
+Sitemap: http://eshop.localhost/bg/sitemap/9
+Sitemap: http://eshop.localhost/en/sitemap/1

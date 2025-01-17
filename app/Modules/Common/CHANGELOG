@@ -1,0 +1,13 @@
+Modules/Common
+
+## [1.1.2] - 2024-02-16
+### Bugfix
+- add $locale in ordering files and routes
+
+## [1.1.1] - 2023-03-29
+### Added
+- create image_upload
+
+## [1.0.0] - 2023-03-07
+### Added
+- create Common module with ImageMultiUpload

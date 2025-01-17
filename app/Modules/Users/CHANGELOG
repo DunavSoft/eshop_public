@@ -1,0 +1,45 @@
+Modules/Users
+
+## [1.1.6] - 2024-04-17
+### Bugfix
+- title of browser tab problem fixed in admin panel
+- submitting empty fields problem fixed in admin panel
+### Edited
+- unset search for deleted elements in admin panel 
+
+## [1.1.5] - 2024-04-02
+### Added
+- Activation for the account when you register
+
+## [1.1.4] - 2024-02-27
+### Added
+- locale to all redirects in AccountController
+
+## [1.1.3] - 2024-02-26
+### Bugfix
+- form_submit was unable to save the data
+
+## [1.1.2] - 2024-02-16
+### Bugfix
+- add $locale in ordering files and routes
+
+## [1.1.1] - 2024-01-27
+### Bugfix
+- Bugfix password reset form, redirects and others.
+
+## [1.1.0] - 2024-01-26
+### Changed
+- Unset search of deleted elements
+- Update pagination of module Subscriptions when searching 
+
+## [1.1.0] - 2024-01-26
+### Added
+- Create pagination and search of module Users
+
+## [1.0.1] - 2022-10-09
+### Added
+- Orders History
+
+## [1.0.0] - 2022-08-23
+### Added
+- Create Module Users
